@@ -4,7 +4,7 @@ Below Steps will help to install Loki for collecting logs from cluster and sendi
 # 1. Install Kube-Prometheus-Stack on ubuntu:
 Configure the already installed or do a fresh installation with below command.  
 
-    helm upgrade --install prod prometheus-community/kube-prometheus-stack -n monitoring --values grafana-config.yaml
+    helm upgrade --install grafana prometheus-community/kube-prometheus-stack -n monitoring --values grafana-config.yaml
 
 # 2. Install Promtail  
 Install Promtail which collects the logs from all nodes by below commands:  

@@ -21,6 +21,11 @@ Below Steps needs to be followed:
 
     kubectl config set-context --current --namespace=metrics
 
+# 2. Validate the metrics on Grafana
+To Search all of the time series data points grouping by job  in query  
+
+    count({__name__=~".+"}) by (job)
+
 # 3. Import Node Exporter Full Dashboard  
 
 Reference Documentation:
