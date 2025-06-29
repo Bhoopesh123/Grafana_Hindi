@@ -18,7 +18,8 @@ Grafana Tempo is an open source, easy-to-use and high-scale distributed tracing 
     cd tempo
     helm install tempo . --namespace observability
     helm repo add grafana https://grafana.github.io/helm-charts
-    helm install tempo grafana/tempo-distributed
+    helm upgrade --install  tempo grafana/tempo
+    helm upgrade --install  tempo grafana/tempo-distributed
 
 # 3. Install Kube-Prometheus-Stack  
 Reference Documentation is as below:  
@@ -29,14 +30,19 @@ This will installs the kube-prometheus stack, a collection of Kubernetes manifes
 
 Below Steps needs to be followed: 
 
-    helm upgrade --install prod prometheus-community/kube-prometheus-stack -n observability --values tempo-config.yaml
+    helm upgrade --install grafana prometheus-community/kube-prometheus-stack -n observability --values tempo-config.yaml
+
+
 
 # 4. Install Sample Application for ingesting Traces to Grafana  
 
 Below Steps needs to be followed: 
 
     kubectl apply -f tempo-test-dep.yaml
-    kubectl apply -f tempo-test-svc.yamlS
+    kubectl apply -f tempo-test-svc.yaml
 
+# 5. Validate the metrics on Grafana
+To Search all of the time series data points grouping by job  in query  
 
+    count({__name__=~".+"}) by (job)
 
